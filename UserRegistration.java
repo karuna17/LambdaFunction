@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 @FunctionalInterface
  interface User {
-	void mobileValidate();
+	void passwordValidate();
 }
 
 
@@ -15,20 +15,20 @@ public class UserRegistration {
 		User user = () -> {
 			Scanner sc = new Scanner(System.in);
 			
-			String regex = "(91){1}[7-9][0-9]{9}";	
+			String regex = "^(?=.{8,20})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$";	
 			
-			System.out.println("Enter your mobile number");
-			String email = sc.next();
+			System.out.println("Enter your password number");
+			String password = sc.next();
 			
 			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(email);
+			Matcher matcher = pattern.matcher(password);
 			if(matcher.matches()) {
-				System.out.println("Given mobile number is valid");
+				System.out.println("Given password is valid");
 			} else {
-				System.out.println("Given mobile number is not valid");
+				System.out.println("Given password is not valid");
 			}			
 		};
-		user.mobileValidate();
+		user.passwordValidate();
 	}
 
 }
